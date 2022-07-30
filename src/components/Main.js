@@ -8,15 +8,15 @@ export default function Main(){
     let [category, setCategory] = React.useState({
         anime: {
             checked: true,
-            name: "Anime"
+            name: "Anime 🔥"
         },
         programming: {
             checked: false,
-            name: 'Programming'
+            name: 'Coding 💯'
         },
         random: {
             checked: false,
-            name: 'Quotes'
+            name: 'Quotes 🌞'
         }
     })
     let [requestAnime, setRequestAnime] = React.useState(0);
@@ -62,15 +62,15 @@ export default function Main(){
         setCategory({
             anime: {
                 checked: true,
-                name: "Anime"
+                name: "Anime 🔥"
             },
             programming: {
                 checked: false,
-                name: 'Programming'
+                name: 'Coding 💯'
             },
             random: {
                 checked: false,
-                name: 'Quotes'
+                name: 'Quotes 🌞'
             }
         })
         
@@ -86,15 +86,15 @@ export default function Main(){
         setCategory({
             anime: {
                 checked: false,
-                name: "Anime"
+                name: "Anime 🔥"
             },
             programming: {
                 checked: false,
-                name: 'Programming'
+                name: 'Coding 💯'
             },
             random: {
                 checked: true,
-                name: 'Quotes'
+                name: 'Quotes 🌞'
             }
         })
         
@@ -116,15 +116,15 @@ export default function Main(){
         setCategory({
             anime: {
                 checked: false,
-                name: "Anime"
+                name: "Anime 🔥"
             },
             programming: {
                 checked: true,
-                name: 'Programming'
+                name: 'Coding 💯'
             },
             random: {
                 checked: false,
-                name: 'Quotes'
+                name: 'Quotes 🌞'
             }
         })
     }
@@ -136,7 +136,7 @@ export default function Main(){
                         img="./test.png" 
                         quote={animeQuotes[countAnime].quote} 
                         handleClick={handleClickAnime} 
-                        heading={"Anime"}
+                        heading={category.anime.name}
                         subHeading={animeQuotes[countAnime].anime}
                         author={animeQuotes[countAnime].character} /> : 
                     <h2>Please Wait ...</h2>
@@ -146,7 +146,7 @@ export default function Main(){
                         img="./hacker.png"
                         quote={programmingQuotes[countProgramming].en} 
                         handleClick={handleClickProgramming} 
-                        heading={"Programming"}
+                        heading={category.programming.name}
                         subHeading={programmingQuotes[countProgramming].author} 
                         author={programmingQuotes[countProgramming].author} /> :                         
                     <h2>Please Wait ...</h2>
@@ -156,7 +156,7 @@ export default function Main(){
                         img="./random.png"
                         quote={randomQuotes[countRandom].body} 
                         handleClick={handleClickRandom} 
-                        heading={"Random"}
+                        heading={category.random.name}
                         subHeading={randomQuotes[countRandom].author} 
                         author={randomQuotes[countRandom].author} /> :                         
                     <h2>Please Wait ...</h2>
@@ -179,6 +179,9 @@ export default function Main(){
                 <div className="col-12 col-md-6 post">
                     {component()}
                 </div>
+            </div>
+            <div className="row second mt-3 mt-lg-5 px-lg-5">
+                <p className="px-4">Note: If you see random garbage in the post just click "Generate" one time 😁</p>
             </div>
         </main>
     );

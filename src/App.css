@@ -88,12 +88,36 @@ main {
   background-color: #a87abd;
 }
 
+.post-download {
+  background-color: rgb(255, 255, 255);
+  color: #5C4169;
+  border: none;
+  border-radius: 25px;
+  height: 45px;
+  width: 130px;
+  margin-left: 10px;
+}
+
+.post-download:hover {
+  background-color: rgb(231, 230, 230);
+}
+
+.post-download:active {
+  background-color: rgb(245, 244, 244);
+}
+
+.post-download > img {
+  width: 16px;
+  margin-right: 5px;
+}
+
 .post-main {
   background-color: #F7F5F7;
   padding: 20px;
   height: 350px;
   width: 350px;
   display: grid;
+  word-spacing: 0.2rem;
   gap: 5px;
   grid-template-rows: 80px 80px repeat(3, 1fr);
   grid-template-columns: repeat(5, 1fr);
@@ -146,6 +170,9 @@ main {
   color: #00000088;
 }
 
+.second {
+  text-align: center;
+}
 
 
 
