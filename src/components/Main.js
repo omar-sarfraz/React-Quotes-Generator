@@ -1,7 +1,7 @@
 import React from "react";
 import PostComponent from "./PostComponent";
 
-export default function Main(){
+export default function Main() {
     let [animeQuotes, setAnimeQuotes] = React.useState([]);
     let [programmingQuotes, setProgrammingQuotes] = React.useState([]);
     let [randomQuotes, setRandomQuotes] = React.useState([]);
@@ -39,7 +39,7 @@ export default function Main(){
             method: 'GET',
             withCredentials: true,
             headers: {
-                Authorization: "Token 6e94989333d6d129d52ca91f819f598a"
+                Authorization: `Token ${process.env.REACT_APP_TOKEN}`
             }
         })
             .then(response => response.json())
@@ -47,6 +47,7 @@ export default function Main(){
                 console.log(quotes.quotes)
                 return setRandomQuotes(quotes.quotes)
             })
+            .catch(err => console.log(err))
     }, [requestRandom])
 
     React.useEffect(() => {
@@ -58,7 +59,7 @@ export default function Main(){
             });
     }, [])
 
-    function handleClickAnime(){
+    function handleClickAnime() {
         setCategory({
             anime: {
                 checked: true,
@@ -73,8 +74,8 @@ export default function Main(){
                 name: 'Quotes 🌞'
             }
         })
-        
-        if(countAnime === 9){
+
+        if (countAnime === 9) {
             setCountAnime(0);
             setRequestAnime(prev => prev + 1);
             return;
@@ -82,7 +83,7 @@ export default function Main(){
         setCountAnime(prev => prev + 1);
     }
 
-    function handleClickRandom(){
+    function handleClickRandom() {
         setCategory({
             anime: {
                 checked: false,
@@ -97,8 +98,8 @@ export default function Main(){
                 name: 'Quotes 🌞'
             }
         })
-        
-        if(countRandom === 24){
+
+        if (countRandom === 24) {
             setCountRandom(0);
             setRequestRandom(prev => prev + 1);
             return;
@@ -106,12 +107,12 @@ export default function Main(){
         setCountRandom(prev => prev + 1);
     }
 
-    function randomCountProgramming(){
+    function randomCountProgramming() {
         let count = Math.floor(Math.random() * 501)
         return count
     }
 
-    function handleClickProgramming(){
+    function handleClickProgramming() {
         setCountProgramming(randomCountProgramming());
         setCategory({
             anime: {
@@ -129,45 +130,45 @@ export default function Main(){
         })
     }
 
-    function component(){
-        if(category.anime.checked){
-            return animeQuotes.length ? animeQuotes[countAnime].quote.length >= 270 ? handleClickAnime() : 
-                    <PostComponent
-                        img="./test.png" 
-                        quote={animeQuotes[countAnime].quote} 
-                        handleClick={handleClickAnime} 
-                        heading={category.anime.name}
-                        subHeading={animeQuotes[countAnime].anime}
-                        author={animeQuotes[countAnime].character} /> : 
-                    <h2>Please Wait ...</h2>
-        } else if (category.programming.checked){
-            return programmingQuotes.length ? programmingQuotes[countProgramming].en.length >= 270 ? handleClickProgramming() : 
-                    <PostComponent 
-                        img="./hacker.png"
-                        quote={programmingQuotes[countProgramming].en} 
-                        handleClick={handleClickProgramming} 
-                        heading={category.programming.name}
-                        subHeading={programmingQuotes[countProgramming].author} 
-                        author={programmingQuotes[countProgramming].author} /> :                         
-                    <h2>Please Wait ...</h2>
+    function component() {
+        if (category.anime.checked) {
+            return animeQuotes.length ? animeQuotes[countAnime].quote.length >= 270 ? handleClickAnime() :
+                <PostComponent
+                    img="./test.png"
+                    quote={animeQuotes[countAnime].quote}
+                    handleClick={handleClickAnime}
+                    heading={category.anime.name}
+                    subHeading={animeQuotes[countAnime].anime}
+                    author={animeQuotes[countAnime].character} /> :
+                <h2>Please Wait ...</h2>
+        } else if (category.programming.checked) {
+            return programmingQuotes.length ? programmingQuotes[countProgramming].en.length >= 270 ? handleClickProgramming() :
+                <PostComponent
+                    img="./hacker.png"
+                    quote={programmingQuotes[countProgramming].en}
+                    handleClick={handleClickProgramming}
+                    heading={category.programming.name}
+                    subHeading={programmingQuotes[countProgramming].author}
+                    author={programmingQuotes[countProgramming].author} /> :
+                <h2>Please Wait ...</h2>
         } else if (category.random.checked) {
-            return randomQuotes.length ? randomQuotes[countRandom].body.length >= 270 ? handleClickRandom() : 
-                    <PostComponent 
-                        img="./random.png"
-                        quote={randomQuotes[countRandom].body} 
-                        handleClick={handleClickRandom} 
-                        heading={category.random.name}
-                        subHeading={randomQuotes[countRandom].author} 
-                        author={randomQuotes[countRandom].author} /> :                         
-                    <h2>Please Wait ...</h2>
+            return randomQuotes.length ? randomQuotes[countRandom].body.length >= 270 ? handleClickRandom() :
+                <PostComponent
+                    img="./random.png"
+                    quote={randomQuotes[countRandom].body}
+                    handleClick={handleClickRandom}
+                    heading={category.random.name}
+                    subHeading={randomQuotes[countRandom].author}
+                    author={randomQuotes[countRandom].author} /> :
+                <h2>Please Wait ...</h2>
         }
     }
 
     const buttonStyle = {
         backgroundColor: 'white'
     }
-    
-    return(
+
+    return (
         <main>
             <div className="row mt-5 px-lg-5">
                 <div className="col-12 col-md-5 main-left">
